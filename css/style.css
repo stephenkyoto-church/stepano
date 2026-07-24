@@ -1,0 +1,623 @@
+@charset "UTF-8";
+
+/* ========================================================================
+   京都聖ステパノ教会 サイト共通スタイル
+   ------------------------------------------------------------------------
+   - JavaScript を使わない素の HTML/CSS 構成
+   - モバイル優先のレスポンシブ
+   - 変更は基本的にこの1ファイルのみで完結
+   ======================================================================== */
+
+/* -------------------- Design tokens -------------------- */
+:root {
+  /* Palette */
+  --bg:        #F4F3EE;   /* 生成り(和紙) */
+  --bg-alt:    #EBE6D8;   /* 少し濃い生成り(セクション地) */
+  --ink:       #1E1B18;   /* 墨に近い黒 */
+  --ink-mute:  #6D655B;   /* 補助テキスト */
+  --indigo:    #1B2A4E;   /* 藍(見出し・リンク) */
+  --burgundy:  #A83232;   /* 臙脂(アクセント) */
+  --gold:      #B18A45;   /* 古金(小さな装飾のみ) */
+  --line:      #D9D3C4;   /* 罫線 */
+  --line-soft: #E6E1D3;
+
+  /* Typography */
+  --font-serif: "Noto Serif JP", "Hiragino Mincho ProN", "游明朝", serif;
+  --font-sans:  "Noto Sans JP",  "Hiragino Sans", "游ゴシック", sans-serif;
+  --font-latin: "Cormorant Garamond", "Noto Serif JP", serif;
+
+  /* Layout */
+  --page-max:    1080px;
+  --content-max: 720px;
+  --gutter:      1.25rem;
+
+  /* Motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* -------------------- Reset -------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body,
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img, iframe { max-width: 100%; display: block; }
+img { height: auto; }
+a  { color: var(--indigo); text-decoration: underline; text-underline-offset: .18em; }
+a:hover { color: var(--burgundy); }
+
+/* -------------------- Base -------------------- */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink);
+  background: var(--bg);
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* -------------------- Typography -------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--indigo);
+  letter-spacing: .02em;
+  line-height: 1.5;
+}
+
+.eyebrow {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: .95rem;
+  letter-spacing: .12em;
+  color: var(--burgundy);
+  text-transform: none;
+  display: inline-block;
+  margin-bottom: .4rem;
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--burgundy);
+  vertical-align: middle;
+  margin-right: .6rem;
+  margin-bottom: .18em;
+}
+
+.page-title {
+  font-size: clamp(1.7rem, 2.4vw + 1rem, 2.4rem);
+  margin: 0 0 .5rem;
+}
+
+.page-lead {
+  color: var(--ink-mute);
+  font-size: 1.02rem;
+  margin: 0 0 2.5rem;
+  max-width: 40em;
+}
+
+/* -------------------- Layout containers -------------------- */
+.container {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.narrow {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+main {
+  padding: 2.5rem 0 4rem;
+}
+
+/* Section */
+section { padding: 2.5rem 0; }
+section + section { border-top: 1px solid var(--line-soft); }
+
+/* -------------------- Site header -------------------- */
+.site-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem var(--gutter);
+  max-width: var(--page-max);
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.site-logo {
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.site-logo__jp {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--indigo);
+  letter-spacing: .04em;
+}
+.site-logo__en {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: .78rem;
+  color: var(--ink-mute);
+  letter-spacing: .08em;
+  margin-top: .15rem;
+}
+
+/* Nav */
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.4rem;
+  align-items: center;
+}
+.site-nav a {
+  text-decoration: none;
+  color: var(--ink);
+  font-size: .95rem;
+  padding: .35rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--burgundy);
+  border-bottom-color: var(--burgundy);
+}
+
+@media (max-width: 640px) {
+  .site-header__inner { gap: .75rem; }
+  .site-nav { width: 100%; }
+  .site-nav ul {
+    justify-content: flex-start;
+    gap: .25rem 1.1rem;
+    padding-top: .25rem;
+    border-top: 1px solid var(--line-soft);
+  }
+  .site-nav a { font-size: .92rem; }
+}
+
+/* -------------------- Hero (top page) -------------------- */
+.hero {
+  padding: 2.5rem 0 3rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .hero__grid {
+    grid-template-columns: 1.05fr .95fr;
+    gap: 3rem;
+  }
+}
+
+.hero__figure {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--bg-alt);
+  overflow: hidden;
+}
+.hero__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 写真差し替え前のプレースホルダ */
+.hero__figure:empty::after,
+.hero__figure .placeholder {
+  content: "聖堂の写真をここに掲載";
+  display: grid;
+  place-items: center;
+  width: 100%; height: 100%;
+  color: var(--ink-mute);
+  font-family: var(--font-serif);
+  letter-spacing: .1em;
+  background:
+    linear-gradient(135deg, transparent 48%, var(--line) 48% 52%, transparent 52%),
+    var(--bg-alt);
+}
+
+.hero__title {
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
+  margin-bottom: 1rem;
+}
+
+.hero__body {
+  color: var(--ink);
+  margin-bottom: 1.75rem;
+  max-width: 32em;
+}
+
+/* -------------------- Service Time Signature -------------------- */
+/* 「毎週日曜日 午前10時30分」を紙面の中心に据える意匠 */
+.service-time {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 1.6rem 0 1.4rem;
+  margin: 2rem 0;
+  text-align: center;
+  background: transparent;
+}
+.service-time__kicker {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: .95rem;
+  letter-spacing: .18em;
+  color: var(--burgundy);
+  margin-bottom: .3rem;
+}
+.service-time__label {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--ink-mute);
+  letter-spacing: .3em;
+  margin-bottom: .4rem;
+}
+.service-time__main {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--indigo);
+  font-size: clamp(1.4rem, 3vw + 0.8rem, 2.15rem);
+  line-height: 1.35;
+  letter-spacing: .08em;
+}
+.service-time__main .day  { display: inline-block; margin-right: .5em; }
+.service-time__main .hour { display: inline-block; }
+.service-time__note {
+  margin-top: .8rem;
+  color: var(--ink-mute);
+  font-size: .95rem;
+}
+
+/* -------------------- Buttons -------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .55em;
+  padding: .75rem 1.4rem;
+  font-family: var(--font-sans);
+  font-size: .98rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: var(--indigo);
+  color: #FBFAF5;
+  border: 1px solid var(--indigo);
+  transition: background .2s var(--ease), color .2s var(--ease);
+}
+.btn:hover { background: var(--burgundy); border-color: var(--burgundy); color: #FBFAF5; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--indigo);
+}
+.btn--ghost:hover { background: var(--indigo); color: #FBFAF5; }
+
+.btn::after {
+  content: "→";
+  font-family: var(--font-latin);
+}
+
+/* -------------------- Cards / summary blocks -------------------- */
+.summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+@media (min-width: 720px) {
+  .summary { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+
+.summary__item {
+  padding: 1.5rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+}
+.summary__item h3 {
+  font-size: 1.15rem;
+  margin-bottom: .5rem;
+  color: var(--indigo);
+}
+.summary__item p { color: var(--ink); margin-bottom: 1rem; }
+
+/* -------------------- Definition list (info table) -------------------- */
+.info-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .6rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.info-list dt {
+  font-family: var(--font-serif);
+  color: var(--ink-mute);
+  font-size: .95rem;
+  padding-top: .05em;
+  white-space: nowrap;
+}
+.info-list dd {
+  color: var(--ink);
+}
+
+@media (max-width: 520px) {
+  .info-list { grid-template-columns: 1fr; gap: .1rem 0; }
+  .info-list dt { padding-top: .8rem; }
+  .info-list dt:first-child { padding-top: 0; }
+}
+
+/* -------------------- Q & A -------------------- */
+.qa { margin-top: 1.5rem; }
+.qa__item {
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--line-soft);
+}
+.qa__item:last-child { border-bottom: 1px solid var(--line-soft); }
+.qa__q {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--indigo);
+  display: flex;
+  gap: .8rem;
+  margin-bottom: .5rem;
+}
+.qa__q::before {
+  content: "Q.";
+  font-family: var(--font-latin);
+  font-style: italic;
+  color: var(--burgundy);
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+.qa__a {
+  display: flex;
+  gap: .8rem;
+  color: var(--ink);
+}
+.qa__a::before {
+  content: "A.";
+  font-family: var(--font-latin);
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+/* -------------------- Steps (order of service, first visit flow) -------------------- */
+.steps {
+  counter-reset: step;
+  margin: 1.5rem 0;
+}
+.steps__item {
+  position: relative;
+  padding: 1rem 0 1rem 3rem;
+  border-top: 1px solid var(--line-soft);
+  counter-increment: step;
+}
+.steps__item:last-child { border-bottom: 1px solid var(--line-soft); }
+.steps__item::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0; top: 1.05rem;
+  font-family: var(--font-latin);
+  font-style: italic;
+  color: var(--burgundy);
+  font-size: 1rem;
+  letter-spacing: .05em;
+}
+.steps__item h4 {
+  font-size: 1.05rem;
+  margin-bottom: .3rem;
+}
+.steps__item p { color: var(--ink-mute); margin: 0; }
+
+/* -------------------- Calendar embed -------------------- */
+.calendar {
+  margin: 1.5rem 0 2rem;
+}
+.calendar__frame {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  aspect-ratio: 4 / 3;
+}
+@media (min-width: 720px) {
+  .calendar__frame { aspect-ratio: 16 / 10; }
+}
+.calendar__frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.cal-pc { display: none; }
+.cal-sp { display: block; }
+@media (min-width: 720px) {
+  .cal-pc { display: block; }
+  .cal-sp { display: none; }
+}
+.calendar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem 1.2rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.calendar__note {
+  color: var(--ink-mute);
+  font-size: .92rem;
+  margin-top: .8rem;
+}
+
+/* -------------------- Map -------------------- */
+.map {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  background: var(--bg-alt);
+  margin: 1.5rem 0;
+}
+@media (min-width: 720px) {
+  .map { aspect-ratio: 16 / 9; }
+}
+.map iframe { width: 100%; height: 100%; border: 0; }
+
+.map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem 1rem;
+  margin-top: 1rem;
+}
+
+/* -------------------- Gallery -------------------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .6rem;
+  margin: 1.5rem 0;
+}
+@media (min-width: 720px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+}
+.gallery figure { margin: 0; }
+.gallery__img {
+  aspect-ratio: 4 / 3;
+  background: var(--bg-alt);
+  overflow: hidden;
+  position: relative;
+}
+.gallery__img img { width: 100%; height: 100%; object-fit: cover; }
+.gallery__img.is-placeholder::after {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink-mute);
+  font-family: var(--font-serif);
+  font-size: .92rem;
+  letter-spacing: .1em;
+  background:
+    linear-gradient(135deg, transparent 48%, var(--line) 48% 52%, transparent 52%),
+    var(--bg-alt);
+}
+.gallery figcaption {
+  font-size: .82rem;
+  color: var(--ink-mute);
+  margin-top: .35rem;
+  text-align: center;
+}
+
+/* -------------------- Ornament -------------------- */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  color: var(--gold);
+}
+.ornament::before,
+.ornament::after {
+  content: "";
+  flex: 1;
+  max-width: 5rem;
+  height: 1px;
+  background: var(--line);
+}
+.ornament__mark {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: 1.1rem;
+  letter-spacing: .3em;
+  color: var(--gold);
+}
+
+/* -------------------- Footer -------------------- */
+.site-footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+  padding: 2.5rem 0 2rem;
+  margin-top: 4rem;
+}
+.site-footer__inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 720px) {
+  .site-footer__inner {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: start;
+  }
+}
+.site-footer h4 {
+  font-size: 1rem;
+  margin-bottom: .6rem;
+  color: var(--indigo);
+}
+.site-footer p,
+.site-footer li {
+  font-size: .92rem;
+  color: var(--ink);
+}
+.site-footer ul li { padding: .2rem 0; }
+.site-footer__copy {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: .82rem;
+  color: var(--ink-mute);
+  text-align: center;
+}
+
+/* -------------------- Utilities -------------------- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.text-center { text-align: center; }
+.mt-lg { margin-top: 2.5rem; }
+.mb-lg { margin-bottom: 2.5rem; }

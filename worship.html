@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>礼拝のご案内 | 京都聖ステパノ教会</title>
+<meta name="description" content="京都聖ステパノ教会の礼拝スケジュール。毎週日曜日午前10時30分より主日礼拝を行っています。Googleカレンダーへの取込にも対応。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="index.html" class="site-logo" aria-label="京都聖ステパノ教会 ホーム">
+      <span class="site-logo__jp">京都聖ステパノ教会</span>
+      <span class="site-logo__en">St. Stephen's Church, Kyoto</span>
+    </a>
+    <nav class="site-nav" aria-label="サイトナビゲーション">
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="worship.html" aria-current="page">礼拝のご案内</a></li>
+        <li><a href="welcome.html">初めての方へ</a></li>
+        <li><a href="about.html">教会について</a></li>
+        <li><a href="access.html">アクセス</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container narrow">
+
+    <span class="eyebrow">Worship</span>
+    <h1 class="page-title">礼拝のご案内</h1>
+    <p class="page-lead">
+      毎週日曜日、午前10時30分より主日礼拝を行っています。
+      キリスト教にはじめて触れる方も、他教派の方も、どうぞご一緒にお祈りください。
+    </p>
+
+    <!-- ---------- Service time signature ---------- -->
+    <div class="service-time">
+      <div class="service-time__kicker">Sunday Service</div>
+      <div class="service-time__label">主 日 礼 拝</div>
+      <div class="service-time__main">
+        <span class="day">毎週日曜日</span><span class="hour">午前 10時30分</span>
+      </div>
+      <p class="service-time__note">所要 約1時間15分 · 礼拝後 茶話会</p>
+    </div>
+
+    <!-- ---------- カレンダー ---------- -->
+    <section>
+      <h2>礼拝スケジュール</h2>
+      <p>
+        主日礼拝の予定・司式者・教会暦は下記のカレンダーでご確認いただけます。
+        更新は随時行われます。
+      </p>
+
+      <!-- ▼ Google カレンダー埋め込み ▼
+           【設定方法】
+             1. 教会用 Google アカウントで専用カレンダーを作成
+             2. 設定 → 「一般公開して誰でも利用できるようにする」を有効化
+             3. 設定 → 「カレンダーの統合」→ 埋め込みコードを取得
+             4. 以下 2 つの iframe の src を、それぞれ mode=MONTH / mode=AGENDA で書き換え
+           【カレンダーID の置き換え】
+             src="https://calendar.google.com/calendar/embed?src=(カレンダーID)&ctz=Asia%2FTokyo&mode=MONTH&showTitle=0&showPrint=0"
+      -->
+
+      <!-- PC / タブレット: 月表示 -->
+      <div class="calendar__frame cal-pc">
+        <iframe
+          src="about:blank"
+          title="礼拝スケジュール(月表示)"
+          loading="lazy"></iframe>
+      </div>
+
+      <!-- スマホ: 予定リスト表示(AGENDA) -->
+      <div class="calendar__frame cal-sp">
+        <iframe
+          src="about:blank"
+          title="礼拝スケジュール(予定表示)"
+          loading="lazy"></iframe>
+      </div>
+
+      <!-- カレンダー取り込み用リンク -->
+      <div class="calendar__actions">
+        <!-- ▼ 「Googleカレンダーに追加」ボタン
+             href の (カレンダーID) を実際のカレンダーIDに書き換えてください -->
+        <a class="btn"
+           href="https://calendar.google.com/calendar/render?cid=(カレンダーID)"
+           target="_blank" rel="noopener">
+          Google カレンダーに追加
+        </a>
+
+        <!-- ▼ iCal 購読(iPhone 標準カレンダー等)
+             href の (iCal公開URL) を、Google カレンダー設定内の「iCal 形式の公開 URL」に置き換えてください -->
+        <a class="btn btn--ghost"
+           href="(iCal公開URL)"
+           target="_blank" rel="noopener">
+          iCal 形式で購読する
+        </a>
+      </div>
+
+      <p class="calendar__note">
+        購読後は、教会側でカレンダーを更新するたびに、
+        お使いのカレンダーアプリにも自動で反映されます。
+      </p>
+    </section>
+
+    <div class="ornament" aria-hidden="true"><span class="ornament__mark">✦</span></div>
+
+    <!-- ---------- 礼拝の流れ ---------- -->
+    <section>
+      <h2>礼拝の流れ</h2>
+      <p>
+        主日礼拝は、聖書朗読・お説教・讃美歌・お祈りで構成されます。
+        月により聖餐式が行われる週と、朝の礼拝の週があります。
+      </p>
+
+      <ol class="steps">
+        <li class="steps__item">
+          <h4>入 堂</h4>
+          <p>入口で週報をお受け取りください。空いている席にご自由におかけください。</p>
+        </li>
+        <li class="steps__item">
+          <h4>礼拝のはじまり</h4>
+          <p>讃美歌・お祈り・聖書朗読を中心に、司式者の案内に沿って進みます。</p>
+        </li>
+        <li class="steps__item">
+          <h4>お説教</h4>
+          <p>その日の聖書の言葉について、司祭よりお話しします。</p>
+        </li>
+        <li class="steps__item">
+          <h4>聖 餐(該当日のみ)</h4>
+          <p>洗礼を受けていない方は、席でお祈りしていただいて構いません。祝福だけを受けることもできます。</p>
+        </li>
+        <li class="steps__item">
+          <h4>茶話会</h4>
+          <p>礼拝後、希望される方でお茶をいただきながらお話しします。ご自由にご参加ください。</p>
+        </li>
+      </ol>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <h4>京都聖ステパノ教会</h4>
+      <p>
+        〒615-8196 京都市西京区(番地は要確認)<br>
+        TEL/FAX 075-391-1393<br>
+        日本聖公会 京都教区
+      </p>
+    </div>
+    <div>
+      <h4>関連リンク</h4>
+      <ul>
+        <li><a href="https://www.nskk.org/kyoto/" target="_blank" rel="noopener">日本聖公会 京都教区</a></li>
+        <li><a href="https://www.nskk.org/" target="_blank" rel="noopener">日本聖公会</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="site-footer__copy">© 京都聖ステパノ教会</p>
+</footer>
+
+</body>
+</html>
